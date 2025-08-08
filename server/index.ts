@@ -5,9 +5,9 @@ import path from "path";
 
 const app = express();
 
-// ✅ CORS middleware
+// ✅ CORS middleware with specific origin
 app.use(cors({
-  origin: '*',
+  origin: 'https://littlecharmz.com',
   credentials: true,
 }));
 
@@ -57,6 +57,7 @@ app.use((req, res, next) => {
     console.log(`serving on port ${port}`);
   });
 })();
+
 
 
 
