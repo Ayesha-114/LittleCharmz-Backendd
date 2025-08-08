@@ -1,6 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-// import { setupVite, serveStatic, log } from "./vite"; ❌ remove this
+import { setupVite, serveStatic, log } from "./vite";
 import path from "path";
 
 const app = express();
@@ -9,6 +9,11 @@ app.use(express.urlencoded({ extended: false, limit: "50mb" }));
 
 // Serve uploaded files
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
+// ✅ Root route to remove "Cannot GET /" error
+app.get("/", (_req, res) => {
+  res.send("Backend is live!");
+});
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -33,8 +38,7 @@ app.use((req, res, next) => {
         logLine = logLine.slice(0, 79) + "…";
       }
 
-      // console.log(logLine); ✅ using console.log instead of missing log()
-      console.log(logLine);
+      log(logLine);
     }
   });
 
@@ -52,8 +56,11 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  // 🔴 removed setupVite and serveStatic
-  // because they are not available and not needed on Railway
+  if (app.get("env") === "development") {
+    await setupVite(app, server);
+  } else {
+    serveStatic(app);
+  }
 
   const port = parseInt(process.env.PORT || "5000", 10);
   server.listen(
@@ -63,7 +70,8 @@ app.use((req, res, next) => {
       reusePort: true,
     },
     () => {
-      console.log(`serving on port ${port}`);
+      log(`serving on port ${port}`);
     },
   );
 })();
+
