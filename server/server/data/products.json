@@ -1,0 +1,29 @@
+[
+  {
+    "id": "product_1754422143064_57glo83o4",
+    "name": "ladies Mexi ",
+    "description": "rrr",
+    "category": "ladies-casual",
+    "price": "3.994444",
+    "discount": 4,
+    "stock": 4,
+    "image": "/uploads/1754422142375.webp",
+    "color": "Blue",
+    "colors": [
+      "Black",
+      "Brown"
+    ],
+    "colorVariants": "[{\"color\":\"Black\",\"images\":[\"/uploads/1754422142376.jpg\"]},{\"color\":\"Brown\",\"images\":[\"/uploads/1754422142843.jpg\"]}]",
+    "sizes": [
+      "XS"
+    ],
+    "featured": true,
+    "isNew": true,
+    "images": [
+      "/uploads/1754422142375.webp",
+      "/uploads/1754422142376.jpg",
+      "/uploads/1754422142843.jpg"
+    ],
+    "createdAt": "2025-08-05T19:29:03.064Z"
+  }
+]
